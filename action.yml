@@ -1,0 +1,50 @@
+name: ozi-draft
+description: "OZI release draft action."
+author: "Eden Ross Duff MSc <help@oziproject.dev>"
+branding:
+  icon: triangle
+  color: green
+inputs:
+  github-token:
+    description: "GitHub workflow-generated token"
+    required: true
+outputs:
+  drafted:
+    description: "a release has been drafted"
+    value: ${{ steps.draft.outputs.created }}
+  tag:
+    description: "release tag name"
+    value: ${{ steps.version.outputs.tag }}
+runs:
+  using: "composite"
+  steps:
+  - uses: actions/checkout@v4.1.5
+    with:
+      token: ${{ inputs.github-token }}
+      fetch-depth: 0
+
+  - name: Python Semantic Release
+    id: release
+    uses: python-semantic-release/python-semantic-release@v9.7.1
+    with:
+      github_token: ${{ inputs.github-token }}
+
+  - name: Pass release draft status to job
+    id: draft
+    env:
+      check: ${{ steps.release.outputs.released == 'true' }}
+    run: echo "created=${{ env.check }}" >> $GITHUB_OUTPUT
+    shell: bash
+
+  - name: Set version
+    if: steps.release.outputs.released == 'true' || steps.draft.outputs.created == 'true'
+    id: version
+    run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+    shell: bash
+
+  - uses: actions/upload-artifact@v4.3.0
+    if: steps.release.outputs.released == 'true' || steps.draft.outputs.created == 'true'
+    with:
+      name: 'py310'
+      path: |
+        ./
