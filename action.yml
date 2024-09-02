@@ -42,7 +42,7 @@ runs:
     run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
     shell: bash
 
-  - uses: actions/upload-artifact@v4.3.6
+  - uses: actions/upload-artifact@v4.4.0
     if: steps.release.outputs.released == 'true' || steps.draft.outputs.created == 'true'
     with:
       name: 'security2'
