@@ -7,6 +7,7 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 1.0.0   | ✅                 |
 
 <!-- policy update schedule -->
 
