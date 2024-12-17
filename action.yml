@@ -48,5 +48,5 @@ runs:
       include-hidden-files: true
       name: 'security2'
       path: |
-        !.git/config
+        !./.git/config
         ./
