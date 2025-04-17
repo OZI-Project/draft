@@ -54,3 +54,8 @@ runs:
       path: |
         ./
         !.git/config
+
+  - name: No release drafted      
+    if: steps.release.outputs.released == 'false' || steps.draft.outputs.created == 'false'
+    run: exit 1
+    shell: bash
