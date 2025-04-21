@@ -29,7 +29,7 @@ runs:
 
   - name: Python Semantic Release
     id: release
-    uses: python-semantic-release/python-semantic-release@e81a78ae6e21ff8d1adfad470510c7ade03cf496
+    uses: python-semantic-release/python-semantic-release@6e3678a948b62b9af7c4639fa7e199bee5fe8a2e
     with:
       github_token: ${{ inputs.github-token }}
 
