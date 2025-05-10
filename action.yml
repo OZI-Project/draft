@@ -36,8 +36,8 @@ runs:
   - name: Pass release draft status to job
     id: draft
     env:
-      check: ${{ steps.release.outputs.released == 'true' }}
-    run: echo "created=${{ env.check }}" >> $GITHUB_OUTPUT
+      CHECK: ${{ steps.release.outputs.released == 'true' }}
+    run: echo "created=$CHECK" >> $GITHUB_OUTPUT
     shell: bash
 
   - name: Set version
