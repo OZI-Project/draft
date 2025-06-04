@@ -1,9 +1,9 @@
-name: ozi-draft
+name: OZI Draft
 description: "OZI release draft action."
 author: "Eden Ross Duff MSc <help@oziproject.dev>"
 branding:
-  icon: triangle
-  color: green
+  icon: 'edit'
+  color: 'gray-dark'
 inputs:
   github-token:
     description: "GitHub workflow-generated token"
