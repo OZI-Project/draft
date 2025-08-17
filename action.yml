@@ -22,7 +22,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-  - uses: actions/checkout@v4.2.2
+  - uses: actions/checkout@v5.0.0
     with:
       token: ${{ inputs.github-token }}
       submodules: ${{ inputs.checkout-submodules }}
